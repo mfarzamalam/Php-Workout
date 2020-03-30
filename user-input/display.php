@@ -1,3 +1,14 @@
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+  padding: 15px;
+}
+
+</style>
 <?php
 
 include('connection.php');
@@ -8,19 +19,21 @@ $data = mysqli_query($db,$display_query);   // stablish connection b/w database 
 $rows = mysqli_num_rows($data); // checking the number of rows in the table
 if ($rows > 0){
     ?>
-        <table border="1px solid black;">
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Father name</th>
             </tr>
     <?php
-    while($display_result = mysqli_fetch_assoc($data))  // displaying data as associative array
+    while($rslt = mysqli_fetch_assoc($data))  // displaying data as associative array
     {
         echo "  <tr>
-                    <td>".$display_result['id']."</td>
-                    <td>".$display_result['name']."</td>
-                    <td>".$display_result['father_name']."</td>
+                    <td>".$rslt['id']."</td>
+                    <td>".$rslt['name']."</td>
+                    <td>".$rslt['father_name']."</td>
+                    <td><a href='update.php?id=$rslt[id]&&name=$rslt[name]&&fname=$rslt[father_name]'>Edit</a></td>
+                    <td>Delete</td>
                 </tr>";
     }
 }else {
