@@ -33,7 +33,7 @@ if ($rows > 0){
                     <td>".$rslt['name']."</td>
                     <td>".$rslt['father_name']."</td>
                     <td><a href='update.php?id=$rslt[id]&&name=$rslt[name]&&fname=$rslt[father_name]'>Edit</a></td>
-                    <td>Delete</td>
+                    <td><a href='delete.php?id=$rslt[id]' onclick='return checkdelete()'>Delete</a></td>
                 </tr>";
     }
 }else {
@@ -41,3 +41,11 @@ if ($rows > 0){
 }
 ?>
         </table>
+<br>
+<script>
+    function checkdelete() {
+        return confirm('Are you sure to delete this data ?');
+    }
+
+</script>
+<!-- <button style="Margin-left: 20px;" href="insert.php">Add new data</button> -->
