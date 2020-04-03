@@ -9,9 +9,27 @@ table, td, th {
 }
 
 </style>
+
+<h1 style=text-align:center;> Welcome
+
 <?php
 
-include('connection.php');
+include('connection.php'); 
+session_start();
+
+    //check wether the user has logged in or not
+    // comment line 26 to 29(if condition) to view the page without login
+
+
+$checkname = $_SESSION['yourname'];
+
+if($checkname == true){} 
+else {      // if not then redirect ot login page
+    header('location:login.php');
+}
+
+    echo " $checkname" . " </h1>";  // displaying user name
+
 
 $display_query = "Select * FROM students";  // the query which run to show the data
 $data = mysqli_query($db,$display_query);   // stablish connection b/w database and the result which required
@@ -48,4 +66,6 @@ if ($rows > 0){
     }
 
 </script>
+
+<a style="margin-left: 550px; font-size:30px;" href="logout.php">Logout</a>
 <!-- <button style="Margin-left: 20px;" href="insert.php">Add new data</button> -->
