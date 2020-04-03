@@ -10,18 +10,19 @@ include('connection.php');
 
 <body>
 
-<form action="" method="GET"><br>
-Id : <input type="text" name="id" required><br>
-Name : <input type="text" name="name" required><br>
-Father Name : <input type="text" name="fname" required><br><br>
+<form action="" method="post"><br>
+Id : <input type="text" name="id" ><br>
+Name : <input type="text" name="name" ><br>
+Father Name : <input type="text" name="fname" ><br><br>
             <input name="submit" value="submit" type="submit" style="margin-left: 100px;">
 </form>
 
 <?php
-
-    $ids = $_GET['id'];
-    $names = $_GET['name'];
-    $f_names = $_GET['fname'];
+if(isset($_POST['submit']))
+{
+    $ids = $_POST['id'];
+    $names = $_POST['name'];
+    $f_names = $_POST['fname'];
 
     $query = "INSERT INTO students VALUES ('$ids','$names','$f_names')";
   
@@ -32,6 +33,8 @@ Father Name : <input type="text" name="fname" required><br><br>
     }else{
         echo "<br>"."not inserted";
     }
+}
+    
 ?>
 
 </body>
