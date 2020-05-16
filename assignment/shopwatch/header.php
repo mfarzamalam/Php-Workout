@@ -1,3 +1,5 @@
+<?php include "connection.php"?>
+
 <header>
         <!-- Header Start -->
         <div class="header-area">
@@ -15,13 +17,22 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="shop.php">shop</a></li>
                                     <li><a href="contact.php">Contact</a></li>
+    
                                 </ul>
                             </nav>
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
-                                <li> <a href="login.php"><span class="flaticon-user"></span></a></li>
+                                <?php if(!isset($_SESSION['name'])) { ?>
+                                    <li> <a href="login.php"><span class="flaticon-user"></span></a></li>
+                                <?php } else { ?>
+
+                                    <li><a href="addproduct.php"><span>Add Product</span></a></li>
+                                    <li><a href="logoutcheck.php"><span>logout</span></a></li>
+                                
+                                <?php } ?>
+                                
                                 <li><a href="cart.php"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
                         </div>
