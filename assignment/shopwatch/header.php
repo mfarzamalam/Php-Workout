@@ -1,4 +1,3 @@
-<?php include "connection.php"?>
 
 <header>
         <!-- Header Start -->
@@ -28,7 +27,7 @@
                                     <li> <a href="login.php"><span class="flaticon-user"></span></a></li>
                                 <?php } else { ?>
 
-                                    <li><a href="addproduct.php"><span>Add Product</span></a></li>
+                                    <li><a href="product.php"><span>Add Product</span></a></li>
                                     <li><a href="logoutcheck.php"><span>logout</span></a></li>
                                 
                                 <?php } ?>
