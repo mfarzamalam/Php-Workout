@@ -147,7 +147,11 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Add Product</h2>
+                                <?php if(isset($_GET['id']) == "") { ?>
+                                    <h2>Add Product</h2>
+                                <?php } else { ?>
+                                    <h2>Edit Product</h2>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -158,32 +162,69 @@
         <!--? Hero Area End-->
         <!-- ================ contact section start ================= -->
         <div class="form-style-5">
-            <form action="productcheck.php" method="POST">
-                <fieldset>
-                <legend><span class="number">1</span> Category Info</legend>
-                <input type="text" name="cname" placeholder="Name">
-                <textarea name="des" placeholder="Description"></textarea>
-                </fieldset>
-                <fieldset>
-                <legend><span class="number">2</span> Product Info</legend>
-                <input type="text" name="pname" placeholder="Name">
-                <input type="email" name="pquantity" placeholder="Quantity">
-                <input type="email" name="pprice" placeholder="Price">
-                <label for="job">Category:</label>
-                <select id="job" name="category">
-                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <option value="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></option>
-                        <?php } ?>
-                </select>      
-                </fieldset>
-                <br>
-                <fieldset>
-                <legend><span class="number">3</span>Image of Product</legend>
-                <input type="file" name="pimage"></input>
-                </fieldset>
-                <br>
-                <input type="submit" name="ADD" value="Apply" />
-            </form>
+          <?php if(isset($_GET['id'])=="") { ?>  
+                <form action="productadd.php" method="POST">
+                    <fieldset>
+                    <legend><span class="number">1</span> Category Info</legend>
+                    <input type="text" name="cname" placeholder="Name">
+                    <textarea name="des" placeholder="Description"></textarea>
+                    </fieldset>
+                    <fieldset>
+                    <legend><span class="number">2</span> Product Info</legend>
+                    <input type="text" name="pname" placeholder="Name">
+                    <input type="number" name="pquantity" placeholder="Quantity">
+                    <input type="number" name="pprice" placeholder="Price">
+                    <label for="job">Category:</label>
+                    <select id="job" name="category">
+                            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <option value="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></option>
+                            <?php } ?>
+                    </select>      
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                    <legend><span class="number">3</span>Image of Product</legend>
+                    <input type="file" name="uploadfile"></input>
+                    </fieldset>
+                    <br>
+                    <input type="submit" name="ADD" value="Apply" />
+                </form>
+          <?php } else { 
+
+                $id = $_GET['id'];
+
+                $q1 = "SELECT * FROM `product` WHERE `id`='$id'";
+                $r1 = mysqli_query($conn,$q1);
+
+                $e1 = mysqli_fetch_assoc($r1);
+
+              ?>
+
+                <form action="productedit.php?id=<?php echo $id?>" method="POST">
+                    
+                    <fieldset>
+                    <legend><span class="number">1</span> Product Info</legend>
+                    <input type="text" name="pname" value="<?php echo $e1['name']?>">
+                    <input type="number" name="pquantity" value="<?php echo $e1['quantity']?>">
+                    <input type="number" name="pprice" value="<?php echo $e1['price']?>">
+                    <label for="job">Category:</label>
+                    <select id="job" name="category">
+                            <option value="<?php echo $e1['category']?>" selected><?php echo $e1['category']?></option>
+
+                            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <option value="<?php echo $row['name'] ?>"><?php echo $row['name'] ?></option>
+                            <?php } ?>
+                    </select>      
+                    </fieldset>
+                    <br>
+                    <fieldset>
+                    <legend><span class="number">2</span>Image of Product</legend>
+                    <input type="file" value="<?php echo $e1['image']?>" name="uploadfile"></input>
+                    </fieldset>
+                    <br>
+                    <input type="submit" name="EDIT" value="Edit product" />
+                </form>
+          <?php } ?>
         </div>
         <!-- ================ contact section end ================= -->
     </main>
