@@ -32,7 +32,7 @@
                                 
                                 <?php } ?>
                                 
-                                <li><a href="cart.php"><span class="flaticon-shopping-cart"></span></a> </li>
+                                <li><a href="cart.php"><span class="flaticon-shopping-cart"><?php echo isset($_GET['id'])?></span></a></li>
                             </ul>
                         </div>
                     </div>

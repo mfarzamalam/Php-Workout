@@ -71,7 +71,7 @@
                                                             <span><a href="product.php?id=<?php echo $row['id'] ?>">Edit / </a><a href="productdel.php?id=<?php echo $row['id'] ?>"> Delete</a></span>
                                                         <?php } else { ?>
 
-                                                            <span>Add to cart</span>
+                                                            <span><a href="cart.php?id=<?php echo $row['id']?>">Add to cart</a></span>
                                                         <?php }  ?>
                                                     </div>
                                                     <div class="favorit-items">

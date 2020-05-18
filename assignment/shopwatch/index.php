@@ -104,7 +104,7 @@
                                 <div class="popular-img">
                                     <img src="assets/img/gallery/popular1.png" alt="">
                                     <div class="img-cap">
-                                        <span>Add to cart</span>
+                                    <span><a href="insertcart.php?id=<?php echo $row['id']?>">Add to cart</a></span>
                                     </div>
                                     <div class="favorit-items">
                                         <span class="flaticon-heart"></span>
